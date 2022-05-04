@@ -4,27 +4,41 @@ namespace Lab4
 {
     abstract class Text
     {
-        protected uint _charNumber;
+        public string text { get; protected set; } = string.Empty;
         protected Color _color;
         protected string _font = "";
         public uint charNumber
         {
             get
             {
-                return _charNumber;
+                return (uint)text.Length;
             }
+            set { }
         }
 
-        protected Text(uint charNumber, Color color, string font)
+        protected Text(uint charNum, Color color, string font)
         {
-            _charNumber = charNumber;
+            charNumber = charNum;
+            _color = color;
+            _font = font;
+        }
+
+        protected Text(Color color, string font)
+        {
+            _color = color;
+            _font = font;
+        }
+
+        protected Text(string text, Color color, string font)
+        {
+            this.text = text;
             _color = color;
             _font = font;
         }
 
         public void PrintColor()
         {
-            Console.WriteLine(_color);
+            Console.WriteLine(_color.ToString().Split("[")[1].Split("]")[0]);
         }
         public void PrintFont()
         {
