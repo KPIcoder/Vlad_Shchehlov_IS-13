@@ -13,9 +13,6 @@
             Console.WriteLine (cr.Equals(cr1));
             Console.WriteLine(cr.GetHashCode());
             Console.WriteLine(cr.ToString());
-
-
-
         }
     }
 }
