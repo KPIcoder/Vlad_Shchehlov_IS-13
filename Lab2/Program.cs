@@ -19,9 +19,13 @@
                 Console.WriteLine(cr.ToString());*/
             }
 
-            var playroom = new Playroom(2500, 4);
-            playroom.fillPlayroom();
-            playroom.PrintDetails();
+            var playroom1 = new Playroom(3500, 4);
+            var playroom2 = new Playroom(8000, 10);
+            playroom1.fillPlayroom();
+            playroom1.PrintDetails();
+            Console.WriteLine("\nPlayroom 2\n");
+            playroom2.fillPlayroom();
+            playroom2.PrintDetails();
         }
     }
 }
