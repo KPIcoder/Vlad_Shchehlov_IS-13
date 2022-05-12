@@ -1,16 +1,116 @@
-﻿namespace Lab2.Data
+﻿
+namespace Lab2.Data
 {
-    class Playroom
+   class Playroom
     {
-        public uint budget { get; private set;}
-        private Toy[] _toys;
-        public Playroom()
-        {
+        Toy[] bigStorage, mediumStorage, smallStorage;
+        Toy[] toys;
+        static int count = 30;
+        public int money { get; set; }
+        public int age { get; set; }
 
+        public Playroom(int money, int age)
+        {
+            this.money = money;
+            this.age = age;
+            bigStorage = new Toy[count];
+            mediumStorage = new Toy[count];
+            smallStorage = new Toy[count];
+            for (int i = 0; i < count; i++)
+            {
+                if (i < 10)
+                {
+                    bigStorage[i] = new ToyCar("big", 200);
+                    mediumStorage[i] = new ToyCar("medium", 100);
+                    smallStorage[i] = new ToyCar("small", 50);
+                }
+                else if (i < 20)
+                {
+                    bigStorage[i] = new Cube("big", 200);
+                    mediumStorage[i] = new Cube("medium", 100);
+                    smallStorage[i] = new Cube("small", 50);
+                }
+                else
+                {
+                    bigStorage[i] = new Doll("big", 200);
+                    mediumStorage[i] = new Doll("medium", 100);
+                    smallStorage[i] = new Doll("small", 50);
+                }
+            }
         }
-        public void fillPlayroomWithToys()
+        public void fillPlayroom()
         {
-
+            
+            var rand = new Random();
+           if(age > 6 && money >= 9000)
+            {
+                toys = new Toy[2*count];
+                for (int i = 0; i < count; i++)
+                {
+                    toys.Append(bigStorage[i]);
+                    toys.Append(mediumStorage[i]);
+                }
+            }
+           if(age <= 6 && money >= 4500)
+            {
+                toys = new Toy[2 * count];
+                for (int i = 0; i < count; i++)
+                {
+                    toys.Append(mediumStorage[i]);
+                    toys.Append(smallStorage[i]);
+                }
+            }
+           if (age > 6)
+            {
+                int toysCount = (money <= 6000) ? money/bigStorage[0].cost : 30 + (money - 6000)/mediumStorage[0].cost;
+                toys = new Toy[toysCount];
+                while (money >= mediumStorage[0].cost)
+                {
+                    if(money>= bigStorage[0].cost)
+                    {
+                        int randomIndex = rand.Next(bigStorage.Length);
+                        toys.Append(bigStorage[randomIndex]);
+                        bigStorage = bigStorage.Where((source, index) => index != randomIndex).ToArray(); 
+                        money -= bigStorage[0].cost;
+                    }
+                    else if(money >= mediumStorage[0].cost)
+                    {
+                        int randomIndex = rand.Next(mediumStorage.Length);
+                        toys.Append(mediumStorage[randomIndex]);
+                        mediumStorage = mediumStorage.Where((source, index) => index != randomIndex).ToArray();
+                        money -= mediumStorage[0].cost;
+                    } 
+                }
+            }
+           else if (age <= 6)
+            {
+                int toysCount = (money <= 3000) ? money/mediumStorage[0].cost : 30 + (money - 3000)/smallStorage[0].cost;
+                toys = new Toy[toysCount];
+                while(money >= smallStorage[0].cost)
+                {
+                    if(money >= mediumStorage[0].cost)
+                    {
+                        int randomIndex = rand.Next(mediumStorage.Length);
+                        toys.Append(mediumStorage[randomIndex]);
+                        mediumStorage = mediumStorage.Where((source, index) => index != randomIndex).ToArray();
+                        money -= mediumStorage[0].cost;
+                    }
+                    else
+                    {
+                        int randomIndex = rand.Next(smallStorage.Length);
+                        toys.Append(smallStorage[randomIndex]);
+                        smallStorage = smallStorage.Where((source, index) => index != randomIndex).ToArray();
+                        money -= smallStorage[0].cost;
+                    }
+                }
+            }
+        }
+        public void PrintDetails()
+        {
+            for (int i = 0; i < toys.Length; i++)
+            {
+                Console.WriteLine($"Toy: {toys[i].size} - {toys[i].cost}");
+            }
         }
     }
 }

@@ -7,9 +7,9 @@ namespace Lab4
         public uint pagesNumber { get; set; }
         public Page[] pages;
 
-        public override void PrintPagesNumber()
+        public override string getPagesNumber()
         {
-            Console.Write(pagesNumber);
+            return pagesNumber.ToString();    
         }
 
         public PaperBook(uint pagesNum, Color color, string font) 
@@ -41,8 +41,8 @@ namespace Lab4
     }
     class Ebook : Text
     {
-        public Ebook(uint charNumber, Color color, string font)
-                     : base(charNumber, color, font) { }
+        public Ebook(Color color, string font)
+                     : base(color, font) { }
 
         public void TransferToFlashdrive(string path)
         {

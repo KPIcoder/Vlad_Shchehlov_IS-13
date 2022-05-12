@@ -61,8 +61,8 @@ namespace Lab3
 
             Console.WriteLine("Task 3");
             string[] A = { "jskfhlasfdsof", "oksfdhshfa", "fksfkdsfhfjs", "hello", "proga" };
-            var firstChars = from str in A.Reverse()
-                             select str[0];
+            var firstChars = (from str in A
+                             select str[0]).Reverse();
             foreach (char cr in firstChars)
             {
                 Console.Write(cr + " ");

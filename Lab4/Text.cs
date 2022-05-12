@@ -16,6 +16,7 @@ namespace Lab4
             set { }
         }
 
+
         protected Text(uint charNum, Color color, string font)
         {
             charNumber = charNum;
@@ -44,6 +45,6 @@ namespace Lab4
         {
             Console.WriteLine(_font);
         }
-        public virtual void PrintPagesNumber() => Console.WriteLine("No pages in this type of text!");
+        public virtual string getPagesNumber() => "No pages in this type of text!";
     }
 }
