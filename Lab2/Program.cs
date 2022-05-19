@@ -19,12 +19,22 @@
                 Console.WriteLine(cr.ToString());*/
             }
 
-            var playroom1 = new Playroom(3500, 4);
-            var playroom2 = new Playroom(8000, 10);
-            playroom1.fillPlayroom();
-            playroom1.PrintDetails();
-            Console.WriteLine("\nPlayroom 2\n");
-            playroom2.fillPlayroom();
+            ToysPool pool = new ToysPool();
+            pool.AddToy(new Doll("Medium", 100, 3, 7));
+            pool.AddToy(new Doll("Small", 50, 10, 15));
+            pool.AddToy(new Doll("Medium", 150, 6, 9));
+            pool.AddToy(new Doll("Large", 200, 5, 10));
+            pool.AddToy(new ToyCar("Small", 100, 3, 7));
+            pool.AddToy(new ToyCar("Small", 50, 10, 15));
+            pool.AddToy(new ToyCar("Medium", 150, 6, 9));
+            pool.AddToy(new ToyCar("Large", 200, 5, 10));
+            pool.AddToy(new Cube("Large", 200, 5, 10));
+            pool.AddToy(new Cube("Large", 200, 5, 10));
+            Playroom playroom2 = new Playroom(800, 0, 100);
+            playroom2.fillPlayroom(pool);
+
+
+            Console.WriteLine("\nPlayroom\n");
             playroom2.PrintDetails();
         }
     }
