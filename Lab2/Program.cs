@@ -28,13 +28,18 @@
             pool.AddToy(new ToyCar("Small", 50, 10, 15));
             pool.AddToy(new ToyCar("Medium", 150, 6, 9));
             pool.AddToy(new ToyCar("Large", 200, 5, 10));
-            pool.AddToy(new Cube("Large", 200, 5, 10));
-            pool.AddToy(new Cube("Large", 200, 5, 10));
-            Playroom playroom2 = new Playroom(800, 0, 100);
+            pool.AddToy(new Cube("Large", 200, 5, 18));
+            pool.AddToy(new Cube("Large", 200, 5, 18));
+
+            Playroom playroom1 = new Playroom(800, 5, 15);
+            Playroom playroom2 = new Playroom(1000, 0, 10);
+
+            playroom1.fillPlayroom(pool);
             playroom2.fillPlayroom(pool);
 
-
-            Console.WriteLine("\nPlayroom\n");
+            Console.WriteLine("\nPlayroom 1\n");
+            playroom1.PrintDetails();
+            Console.WriteLine("\nPlayroom 2\n");
             playroom2.PrintDetails();
         }
     }
