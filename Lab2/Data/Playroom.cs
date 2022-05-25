@@ -39,7 +39,7 @@ namespace Lab2.Data
         {
             for (int i = 0; i < allToys.Count; i++)
             {
-                Console.WriteLine($"Toy:{allToys[i].name} {allToys[i].size} - {allToys[i].cost}");
+                Console.WriteLine($"Toy: {allToys[i].name} {allToys[i].size} - {allToys[i].cost}");
             }
         }
     }
